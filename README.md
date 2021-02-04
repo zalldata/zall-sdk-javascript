@@ -5,18 +5,18 @@
 ```js
 <script charset='UTF-8' src="zallldata.min.js"></script>
 <script>
-        var zall = window['sensorsDataAnalytic201505'];
-        zall.init({
-            server_url: 'http://127.0.0.1:8080/a?service=zall&project=test&gzip=0',
-            is_track_single_page:true, // 单页面配置，默认开启，若页面中有锚点设计，需要将该配置删除，否则触发锚点会多触发 $pageview 事件
-            heatmap: {
-                //是否开启点击图，default 表示开启，自动采集 $WebClick 事件，可以设置 'not_collect' 表示关闭。
-                clickmap:'default',
-                //是否开启触达注意力图，not_collect 表示关闭，不会自动采集 $WebStay 事件，可以设置 'default' 表示开启。
-                scroll_notice_map:'default'
-            } 
-        });
-        zall.quick('autoTrack');
+      var zall = window['sensorsDataAnalytic201505'];
+      zall.init({
+	  server_url: 'http://127.0.0.1:8080/a?service=zall&project=test&gzip=0',
+	  is_track_single_page:true, // 单页面配置，默认开启，若页面中有锚点设计，需要将该配置删除，否则触发锚点会多触发 $pageview 事件
+	  heatmap: {
+	      //是否开启点击图，default 表示开启，自动采集 $WebClick 事件，可以设置 'not_collect' 表示关闭。
+	      clickmap:'default',
+	     //是否开启触达注意力图，not_collect 表示关闭，不会自动采集 $WebStay 事件，可以设置 'default' 表示开启。
+	     scroll_notice_map:'default'
+	    } 
+	});
+      zall.quick('autoTrack');
 </script>
 ```
 
@@ -25,23 +25,23 @@ Web JS SDK 全埋点包括三种事件：Web 页面浏览、Web 元素点击、W
 ## 1.2. Web 页面浏览($pageview)
 
 ```js
-// 设置之后，SDK 就会自动收集页面浏览事件，以及设置初始来源。
-zall.quick('autoTrack')
+  // 设置之后，SDK 就会自动收集页面浏览事件，以及设置初始来源。
+  zall.quick('autoTrack')
 
-// 另外，如果想加额外的属性，可以如下方式（添加 platform 属性为 h5）
-zall.quick('autoTrack', {
+  // 另外，如果想加额外的属性，可以如下方式（添加 platform 属性为 h5）
+  zall.quick('autoTrack', {
 	platform:'h5'
-})
+  })
 ```
 
 ## 1.3. Web 元素点击($WebClick)
 
 ```js
 // SDK 初始化参数配置
-heatmap: {
-	//是否开启点击图，default 表示开启，自动采集 $WebClick 事件，可以设置 'not_collect' 表示关闭。
-	clickmap:'default'
-}
+  heatmap: {
+      //是否开启点击图，default 表示开启，自动采集 $WebClick 事件，可以设置 'not_collect' 表示关闭。
+      clickmap:'default'
+   }
 ```
 
 
@@ -50,11 +50,11 @@ heatmap: {
 
 ```js
 // SDK 初始化参数配置
-heatmap: {
-	//是否开启触达注意力图，default 表示开启，自动采集 $WebStay 事件，可以设置 'not_collect' 表示关闭。
-	//需要 Web JS SDK 版本号大于 1.9.1
-	scroll_notice_map:'default'
-}
+   heatmap: {
+      //是否开启触达注意力图，default 表示开启，自动采集 $WebStay 事件，可以设置 'not_collect' 表示关闭。
+      //需要 Web JS SDK 版本号大于 1.9.1
+      scroll_notice_map:'default'
+  }
 ```
 
 - 
@@ -75,11 +75,11 @@ heatmap: {
 通过 collect_tags 配置是否开启 div 的全埋点采集，默认不采集。如需开启 ，配置 collect_tags 参数如下（注意：只支持配置 div）：
 
 ```js
-heatmap:{  
-        collect_tags:{
-             div : true
-        }
-}
+   heatmap:{  
+      collect_tags:{
+           div : true
+       }
+    }
 ```
 
 ## 2.2. 支持其他类型元素的自动采集
@@ -130,12 +130,12 @@ zall.init({
 
 <script type="text/javascript">
 $('#submit_order').on('click', function() {
-	zall.quick('trackHeatMap', this, {
-		customProp1: 'test1', //如果需要添加自定义属性需要将 SDK 升级到 1.13.7 及以上版本。
-		customProp2: 'test2'
-	}, function() {
-		console.log('callback');
-	});
+      zall.quick('trackHeatMap', this, {
+	   customProp1: 'test1', //如果需要添加自定义属性需要将 SDK 升级到 1.13.7 及以上版本。
+	   customProp2: 'test2'
+      }, function() {
+	  console.log('callback');
+      });
 });
 </script>
 ```
@@ -147,15 +147,15 @@ $('#submit_order').on('click', function() {
 
 <script>
 export default {
-	methods: {
-		track: function(event) {
-			zall.quick('trackHeatMap', event.target, {
-				customProp1: 'test1', //如果需要添加自定义属性需要将 SDK 升级到 1.13.7 及以上版本。
-				customProp2: 'test2'
-			}, function() {
-				console.log('callback');
-			});
-		}
+   methods: {
+	track: function(event) {
+	 zall.quick('trackHeatMap', event.target, {
+		customProp1: 'test1', //如果需要添加自定义属性需要将 SDK 升级到 1.13.7 及以上版本。
+		customProp2: 'test2'
+	   }, function() {
+	      console.log('callback');
+		});
+	   }
 	}
 }
 </script>
